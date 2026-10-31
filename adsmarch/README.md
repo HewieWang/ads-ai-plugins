@@ -29,7 +29,38 @@ Codex / MCP 客户端
 | 审计与安全 | 所有请求与执行写审计日志；预算上限、禁止词、允许国家等策略在服务端强制 |
 | 引导式问答 | `ads_help` / `ads_onboarding_status` 提供全流程指引，管理台展示接入进度 |
 
-## 快速开始
+## Windows 一键安装（推荐给非技术用户）
+
+适用于 Windows 10/11，**无需管理员权限，也不需要预先安装 Node.js**。
+
+1. 下载项目 ZIP 并解压到任意文件夹（不要在压缩包里直接运行）。
+2. 双击 `install.bat`。
+3. 按中文向导完成选择：
+   - **Live**（连接真实广告账户）或 **Mock**（零花费演示）
+   - 管理台端口（默认 8787）
+   - 是否现在配置 Google / Meta / TikTok 凭证（可先跳过，之后补）
+   - 日预算安全上限、HTTPS 代理（可选）
+4. 安装器会自动完成：便携 Node.js → 安装依赖 → 构建 → 生成 `.env` → 创建桌面快捷方式 → 写入 Codex MCP 配置 → 启动管理台并打开浏览器。
+5. 在管理台点击对应平台的“连接账户”，按提示完成 OAuth 授权。
+
+安装目录：`%LOCALAPPDATA%\Adsmarch`（配置在 `.env`，数据在 `data\`）。
+
+- 修改凭证：双击 `%LOCALAPPDATA%\Adsmarch\配置账户.bat`
+- 停止管理台：双击 `%LOCALAPPDATA%\Adsmarch\停止管理台.bat`
+- 完全卸载：双击项目目录里的 `uninstall.bat`
+- 桌面快捷方式：`打开 Adsmarch 管理台`、`与 Codex 对话`
+
+平台后台登记的 OAuth 回调地址必须是：
+
+```
+http://localhost:8787/auth/google/callback
+http://localhost:8787/auth/meta/callback
+http://localhost:8787/auth/tiktok/callback
+```
+
+如果你改了端口，请把 8787 换成实际端口。申请凭证的详细步骤见 [docs/02](docs/02-google-ads-setup.md)、[docs/03](docs/03-meta-ads-setup.md)、[docs/04](docs/04-tiktok-ads-setup.md)。
+
+## 手动安装（macOS / Linux / 开发者）
 
 ```bash
 cd adsmarch
