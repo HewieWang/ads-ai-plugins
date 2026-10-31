@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Adsmarch · 对话式广告投放</title>
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<div class="glow glow-a"></div>
+<div class="glow glow-b"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">A</div>
+    <div class="brand-text"><strong>Adsmarch</strong><span>对话式广告投放</span></div>
+  </div>
+  <div class="top-actions">
+    <span id="modeBadge" class="pill pill-muted">加载中</span>
+    <button id="tokenBtn" class="ghost" type="button">访问令牌</button>
+    <button id="refreshBtn" class="ghost" type="button">刷新</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">ADS · MCP · CODEX</span>
+      <h1>把广告投放<br />交给一场对话</h1>
+      <p>Adsmarch 把 Google Ads、Meta、TikTok 的真实账户能力接到 Codex。查真实数据、生成创意、建广告、改预算、暂停投放——每一次写入都经过审批与审计。</p>
+      <div class="chips">
+        <span>真实账户</span><span>实时指标</span><span>审批门禁</span><span>全程审计</span>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="panel-label">下一步建议</div>
+      <p id="nextStep">正在读取状态…</p>
+      <div class="progress-wrap">
+        <div class="progress-meta"><span id="progressText">0 / 5</span><span>接入进度</span></div>
+        <div class="progress"><div id="progressBar" class="progress-fill"></div></div>
+      </div>
+      <div class="panel-foot">
+        <span id="approvalMode" class="mono">approval: -</span>
+        <a class="link" href="/api/health" target="_blank" rel="noreferrer">API 状态</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="modeBanner" class="banner hidden"></div>
+
+  <section class="stats">
+    <div class="stat"><span class="stat-label">已连接账户</span><strong id="statAccounts">0</strong><span class="stat-hint">Google · Meta · TikTok</span></div>
+    <div class="stat"><span class="stat-label">待审批操作</span><strong id="statPending">0</strong><span class="stat-hint">写入前必须确认</span></div>
+    <div class="stat"><span class="stat-label">日预算上限</span><strong id="statCap">-</strong><span class="stat-hint">由安全策略控制</span></div>
+    <div class="stat"><span class="stat-label">运行模式</span><strong id="statMode" class="text-gradient">-</strong><span class="stat-hint">mock 不产生真实花费</span></div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="card-head"><h2>接入清单</h2><span class="hint">按顺序完成即可开投</span></div>
+      <div id="steps" class="steps"><div class="skeleton"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>连接广告账户</h2><span class="hint">OAuth 授权，令牌加密存储</span></div>
+      <div id="providers" class="providers"><div class="skeleton"></div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>广告账户</h2><span class="hint" id="accountHint">令牌使用 AES-256-GCM 加密</span></div>
+    <div id="accounts" class="table-wrap"><div class="skeleton"></div></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>待审批操作</h2><span id="pendingBadge" class="badge">0</span></div>
+    <div id="approvals" class="approvals"><div class="skeleton"></div></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>最近操作</h2><span class="hint">审计日志 · 最近 20 条</span></div>
+    <div id="audit" class="audit"><div class="skeleton"></div></div>
+  </section>
+
+  <footer class="footer">
+    <span>Adsmarch · SQLite 本地存储 · <a href="https://developers.google.com/google-ads/api/docs/start" target="_blank" rel="noreferrer">Google Ads API</a> · <a href="https://developers.facebook.com/docs/marketing-apis" target="_blank" rel="noreferrer">Meta Marketing API</a> · <a href="https://business-api.tiktok.com/portal/docs" target="_blank" rel="noreferrer">TikTok Business API</a></span>
+  </footer>
+</main>
+
+<div id="toast" class="toast"></div>
+<script src="/app.js"></script>
+</body>
+</html>
