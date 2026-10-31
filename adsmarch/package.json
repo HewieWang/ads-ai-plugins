@@ -1,0 +1,36 @@
+{
+  "name": "adsmarch",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Adsmarch - conversational ad operations over MCP for Google Ads, Meta and TikTok",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "bin": {
+    "adsmarch": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/server/mcp.ts",
+    "dev:http": "tsx watch src/server/http.ts",
+    "build": "tsc -p tsconfig.json && node -e \"require('fs').copyFileSync('src/db/schema.sql','dist/db/schema.sql')\"",
+    "start": "node dist/server/mcp.js",
+    "start:http": "node dist/server/http.js",
+    "test": "node --import tsx --test test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "admin": "tsx src/cli.ts admin"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "undici": "^7.16.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.23",
+    "@types/node": "^24.10.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}
